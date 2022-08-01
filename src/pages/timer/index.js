@@ -3,11 +3,6 @@ import React, { useState } from "react";
 import { addZero } from "utils/helper/addZero";
 
 const Timer = () => {
-  const [time, setTime] = useState({
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
   const { countdown } = useTimer();
 
   return (
@@ -36,7 +31,7 @@ const Timer = () => {
             alignItems: "center",
           }}
         >
-          <h3 style={{ fontSize: "96px" }}>{addZero(countdown.hours)}</h3>
+          <h3 style={{ fontSize: "96px" }}>{addZero(countdown?.hours)}</h3>
           <p style={{ fontSize: "40px" }}>Hour</p>
         </div>
         <h3 style={{ fontSize: "96px" }}>:</h3>
@@ -48,7 +43,7 @@ const Timer = () => {
             alignItems: "center",
           }}
         >
-          <h3 style={{ fontSize: "96px" }}>{addZero(countdown.minutes)}</h3>
+          <h3 style={{ fontSize: "96px" }}>{addZero(countdown?.minutes)}</h3>
           <p style={{ fontSize: "40px" }}>Minutes</p>
         </div>
         <h3 style={{ fontSize: "96px" }}>:</h3>
@@ -60,7 +55,7 @@ const Timer = () => {
             alignItems: "center",
           }}
         >
-          <h3 style={{ fontSize: "96px" }}>{addZero(countdown.seconds)}</h3>
+          <h3 style={{ fontSize: "96px" }}>{addZero(countdown?.seconds)}</h3>
           <p style={{ fontSize: "40px" }}>Seconds</p>
         </div>
       </div>
