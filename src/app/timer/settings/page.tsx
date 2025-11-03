@@ -1,5 +1,7 @@
+'use client';
+
 import useTimer from "hooks/useTimer";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Settings = () => {
   const [time, setTime] = useState({
@@ -8,9 +10,11 @@ const Settings = () => {
     seconds: 0,
   });
   const { start, stop, reset, setDuration } = useTimer();
+
   const handleSubmit = () => {
     setDuration(time);
   };
+
   return (
     <div
       style={{
@@ -27,12 +31,12 @@ const Settings = () => {
           type="number"
           min="0"
           max="23"
-          maxLength="2"
+          maxLength={2}
           onChange={({ target: { value } }) => {
-            if (value > 23) {
+            if (parseInt(value) > 23) {
               setTime({ ...time, hours: 23 });
             } else {
-              setTime({ ...time, hours: parseInt(value) });
+              setTime({ ...time, hours: parseInt(value) || 0 });
             }
           }}
         />
@@ -41,12 +45,12 @@ const Settings = () => {
           type="number"
           min="0"
           max="59"
-          maxLength="2"
+          maxLength={2}
           onChange={({ target: { value } }) => {
-            if (value > 59) {
+            if (parseInt(value) > 59) {
               setTime({ ...time, minutes: 59 });
             } else {
-              setTime({ ...time, minutes: parseInt(value) });
+              setTime({ ...time, minutes: parseInt(value) || 0 });
             }
           }}
         />
@@ -55,12 +59,12 @@ const Settings = () => {
           type="number"
           min="0"
           max="59"
-          maxLength="2"
+          maxLength={2}
           onChange={({ target: { value } }) => {
-            if (value > 59) {
+            if (parseInt(value) > 59) {
               setTime({ ...time, seconds: 59 });
             } else {
-              setTime({ ...time, seconds: parseInt(value) });
+              setTime({ ...time, seconds: parseInt(value) || 0 });
             }
           }}
         />

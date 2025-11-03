@@ -1,5 +1,6 @@
+'use client';
+
 import useTimer from "hooks/useTimer";
-import React, { useState } from "react";
 import { addZero } from "utils/helper/addZero";
 
 const Timer = () => {

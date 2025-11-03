@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
-let socket;
+'use client';
+
+import { useEffect, useState } from "react";
+import io, { Socket } from "socket.io-client";
+
+let socket: Socket;
 
 const Test = () => {
   // initialise the socket
@@ -16,23 +19,27 @@ const Test = () => {
       console.log("connected");
     });
 
-    socket.on("update-input", (msg) => {
+    socket.on("update-input", (msg: string) => {
       setInput(msg);
     });
   };
 
   // get the input
-  const [input, setInput] = useState(0);
-  const onChangeHandler = (e) => {
+  const [input, setInput] = useState("0");
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-    socket.emit("input-change", e.target.value);
+    if (socket) {
+      socket.emit("input-change", e.target.value);
+    }
   };
 
   // test button press
   const [count, setCount] = useState(0);
   const onPressButton = () => {
     setCount(count + 1);
-    socket.emit("count", count);
+    if (socket) {
+      socket.emit("count", count);
+    }
     console.log("1", count);
   };
   console.log("2", count);
